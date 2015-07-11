@@ -101,3 +101,7 @@ Sample output:
     170
     Queue(23, 9, 21, 14, 18, 22, 12, 15, 16, 20)
     Took 18.998 seconds
+    Finding an optimal solution for 24...
+    182
+    Queue(23, 9, 21, 14, 18, 22, 15, 20, 16, 24)
+    Took 50.642 seconds
