@@ -1,5 +1,3 @@
-import java.util.Calendar
-
 import scala.collection.immutable.{Queue, ListSet}
 
 class TaxmanGameState(val gameSize: Int, val playerValues: Queue[Int] = Queue[Int]()) {
