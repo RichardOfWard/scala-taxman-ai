@@ -40,7 +40,7 @@ object App {
     def findBestGame(state: TaxmanGameState): TaxmanGameState =
       state.availableMoves
         .map(state.move)
-        .map(findBestGame)
+        .par.map(findBestGame)
         .fold(state) {(a,b) => List(a, b).maxBy(_.playerScore)}
   }
 }
