@@ -5,8 +5,6 @@ A brute force solver for the Taxman game (https://bitbucket.org/richardward/scal
 
 My first attempt at a Scala.
 
-Runs out of memory with a game size of 25!
-
 Sample output:
 
     Finding an optimal solution for 1...

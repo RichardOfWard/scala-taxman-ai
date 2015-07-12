@@ -25,26 +25,22 @@ object App {
   def main(args: Array[String]): Unit = {
     for (gameSize <- 1 to 30) {
       println(s"Finding an optimal solution for $gameSize...")
-      var bestState = new TaxmanGameState(gameSize)
-      var currentStates = Set(new TaxmanGameState(gameSize))
+
       val startTimeInMicroSeconds = System.nanoTime()
 
-      while (currentStates.nonEmpty) {
-        currentStates = currentStates.map(
-          state => {
-            if (state.playerScore > bestState.playerScore) {
-              bestState = state
-            }
-            state.availableMoves.map(state.move)
-          }
-        ).flatten
-      }
+      val bestGame = findBestGame(new TaxmanGameState(gameSize))
 
       val timeTakenInSeconds = ((System.nanoTime() - startTimeInMicroSeconds) / 1000000).toFloat / 1000.0
 
-      println(bestState.playerScore)
-      println(bestState.playerValues)
+      println(bestGame.playerScore)
+      println(bestGame.playerValues)
       println(s"Took $timeTakenInSeconds seconds")
     }
+
+    def findBestGame(state: TaxmanGameState): TaxmanGameState =
+      state.availableMoves
+        .map(state.move)
+        .map(findBestGame)
+        .fold(state) {(a,b) => List(a, b).maxBy(_.playerScore)}
   }
 }
